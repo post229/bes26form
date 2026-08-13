@@ -93,6 +93,8 @@
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
+    form.classList.add("was-validated");
+
     if (!form.checkValidity()) {
       form.reportValidity();
       return;

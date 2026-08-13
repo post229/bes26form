@@ -161,7 +161,8 @@ input:focus, textarea:focus {
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
-input:invalid:not(:placeholder-shown) { border-color: var(--err); }
+form.was-validated input:invalid,
+form.was-validated textarea:invalid { border-color: var(--err); }
 
 .choice-row {
   display: flex;
