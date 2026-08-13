@@ -1,0 +1,19 @@
+{
+  "name": "bes26form",
+  "version": "1.0.0",
+  "description": "Beauty Expert Summit 2026 Registration Form",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'Static site - no build needed'"
+  },
+  "keywords": [
+    "registration",
+    "form",
+    "static"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/speed-insights": "^1.1.0"
+  }
+}

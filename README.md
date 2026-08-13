@@ -8,6 +8,7 @@
 index.html      — сама форма (все 13 разделов из PDF)
 styles.css       — оформление
 script.js        — логика формы и отправка данных
+speed-insights.js — Vercel Speed Insights для отслеживания производительности
 config.js        — сюда вставляется URL вашего Google Apps Script
 google-apps-script/Code.gs — код бэкенда для Google Таблиц
 BES2026_Google_Sheet_Template.xlsx — готовый шаблон таблицы: все столбцы уже названы и подписаны по-русски (лист «Легенда полей»), вручную придумывать поля не нужно
@@ -97,3 +98,20 @@ git push -u origin main
 - Обязательные/необязательные поля — атрибут `required` в `index.html`.
 - Цвета и шрифты — переменные в начале `styles.css` (`:root`).
 - Состав столбцов Google Таблицы — массив `COLUMNS` в `Code.gs`.
+
+---
+
+## Vercel Speed Insights
+
+Проект настроен с поддержкой Vercel Speed Insights для отслеживания производительности сайта.
+
+### Как включить Speed Insights
+
+1. После развертывания на Vercel откройте панель управления проектом
+2. Перейдите на вкладку **Speed Insights**
+3. Нажмите **Enable Speed Insights**
+4. Данные начнут собираться автоматически после посещения сайта пользователями
+
+Speed Insights отслеживает ключевые метрики производительности (Web Vitals): LCP, FID, CLS, FCP и TTFB.
+
+Подробнее см. [SPEED_INSIGHTS.md](SPEED_INSIGHTS.md)
