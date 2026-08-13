@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beauty Expert Summit 2026 — Registration</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">28–29 November 2026 · Alicante / Elche, Spain</p>
+    <h1>Beauty Expert Summit 2026</h1>
+    <p class="subtitle">Speaker &amp; Participant Registration Form</p>
+    <p class="hero-note">Please complete the form in English. Fields marked "optional" may be left blank. Where documents are requested, please attach them below.</p>
+  </div>
+</header>
+
+<main>
+<form id="regForm" novalidate>
+
+  <!-- 01 PERSONAL INFORMATION -->
+  <section class="card">
+    <h2><span class="num">01</span> Personal Information</h2>
+
+    <div class="grid2">
+      <div class="field">
+        <label for="full_name">Full name *</label>
+        <input type="text" id="full_name" name="full_name" required>
+      </div>
+      <div class="field">
+        <label for="date_of_birth">Date of birth *</label>
+        <input type="date" id="date_of_birth" name="date_of_birth" required>
+      </div>
+      <div class="field">
+        <label for="country">Country *</label>
+        <input type="text" id="country" name="country" required>
+      </div>
+      <div class="field">
+        <label for="city">City *</label>
+        <input type="text" id="city" name="city" required>
+      </div>
+      <div class="field">
+        <label for="phone_whatsapp">Phone / WhatsApp *</label>
+        <input type="tel" id="phone_whatsapp" name="phone_whatsapp" placeholder="Include country code" required>
+      </div>
+      <div class="field">
+        <label for="email">E-mail *</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Title / Academic degree</label>
+      <div class="choice-row">
+        <label class="chip"><input type="checkbox" name="title_degree" value="MD"> MD</label>
+        <label class="chip"><input type="checkbox" name="title_degree" value="PhD"> PhD</label>
+        <label class="chip"><input type="checkbox" name="title_degree" value="Professor"> Professor</label>
+        <label class="chip other-chip"><input type="checkbox" name="title_degree" value="Other" data-other-target="title_degree_other_wrap"> Other</label>
+      </div>
+      <input type="text" name="title_degree_other" class="other-input hidden" placeholder="Please specify" id="title_degree_other_wrap">
+    </div>
+  </section>
+
+  <!-- 02 PROFESSIONAL INFORMATION -->
+  <section class="card">
+    <h2><span class="num">02</span> Professional Information</h2>
+
+    <div class="field">
+      <label>Your specialization</label>
+      <div class="choice-row">
+        <label class="chip"><input type="checkbox" name="specialization" value="Aesthetic / Plastic Surgery"> Aesthetic / Plastic Surgery</label>
+        <label class="chip"><input type="checkbox" name="specialization" value="Aesthetic Medicine / Cosmetology"> Aesthetic Medicine / Cosmetology</label>
+        <label class="chip"><input type="checkbox" name="specialization" value="Ophthalmology"> Ophthalmology</label>
+        <label class="chip"><input type="checkbox" name="specialization" value="Refractive Surgery"> Refractive Surgery</label>
+        <label class="chip other-chip"><input type="checkbox" name="specialization" value="Other" data-other-target="specialization_other_wrap"> Other</label>
+      </div>
+      <input type="text" name="specialization_other" class="other-input hidden" placeholder="Please specify" id="specialization_other_wrap">
+    </div>
+
+    <div class="grid2">
+      <div class="field">
+        <label for="subspecialization">Subspecialization / main field of expertise</label>
+        <input type="text" id="subspecialization" name="subspecialization">
+      </div>
+      <div class="field">
+        <label for="current_position">Current position / institution / clinic</label>
+        <input type="text" id="current_position" name="current_position">
+      </div>
+      <div class="field">
+        <label for="website_social">Website / Instagram / LinkedIn</label>
+        <input type="text" id="website_social" name="website_social">
+      </div>
+      <div class="field">
+        <label for="years_experience">Years of professional experience</label>
+        <input type="text" id="years_experience" name="years_experience">
+      </div>
+      <div class="field">
+        <label for="procedures_count">Procedures / surgeries performed <span class="opt">Optional</span></label>
+        <input type="text" id="procedures_count" name="procedures_count">
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 EDUCATION & QUALIFICATIONS -->
+  <section class="card">
+    <h2><span class="num">03</span> Education &amp; Qualifications</h2>
+    <div class="grid2">
+      <div class="field">
+        <label for="medical_diploma">Medical / University Diploma</label>
+        <input type="text" id="medical_diploma" name="medical_diploma">
+      </div>
+      <div class="field">
+        <label for="residency">Specialization / Residency</label>
+        <input type="text" id="residency" name="residency">
+      </div>
+      <div class="field">
+        <label for="academic_degree">Academic degree</label>
+        <input type="text" id="academic_degree" name="academic_degree">
+      </div>
+      <div class="field">
+        <label for="certifications">Additional certifications / fellowships</label>
+        <input type="text" id="certifications" name="certifications">
+      </div>
+    </div>
+    <div class="field">
+      <label for="diploma_file">Attach a copy of your diploma and/or relevant professional certificate</label>
+      <input type="file" id="diploma_file" name="diploma_file">
+    </div>
+  </section>
+
+  <!-- 04 PARTICIPATION STATUS -->
+  <section class="card">
+    <h2><span class="num">04</span> Participation Status</h2>
+
+    <div class="field">
+      <label>Your participation at Beauty Expert Summit 2026</label>
+      <div class="choice-row">
+        <label class="chip"><input type="checkbox" name="participation_status" value="Speaker / Lecturer"> Speaker / Lecturer</label>
+        <label class="chip"><input type="checkbox" name="participation_status" value="Moderator"> Moderator</label>
+        <label class="chip"><input type="checkbox" name="participation_status" value="Workshop / Wet Lab Instructor"> Workshop / Wet Lab Instructor</label>
+        <label class="chip"><input type="checkbox" name="participation_status" value="Live Surgery Participant"> Live Surgery Participant</label>
+        <label class="chip"><input type="checkbox" name="participation_status" value="Exhibitor / Industry Representative"> Exhibitor / Industry Representative</label>
+        <label class="chip"><input type="checkbox" name="participation_status" value="Participant / Delegate"> Participant / Delegate</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Which day will you attend?</label>
+      <div class="choice-row">
+        <label class="chip"><input type="radio" name="attendance_day" value="28 November 2026"> 28 November 2026</label>
+        <label class="chip"><input type="radio" name="attendance_day" value="29 November 2026"> 29 November 2026</label>
+        <label class="chip"><input type="radio" name="attendance_day" value="Both days"> Both days</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 PRESENTATION INFORMATION -->
+  <section class="card">
+    <h2><span class="num">05</span> Presentation Information <span class="opt">For speakers only</span></h2>
+
+    <div class="grid2">
+      <div class="field">
+        <label for="presentation_title">Title of your presentation</label>
+        <input type="text" id="presentation_title" name="presentation_title">
+      </div>
+      <div class="field">
+        <label for="presentation_duration">Presentation duration <span class="opt">Minutes</span></label>
+        <input type="text" id="presentation_duration" name="presentation_duration">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Preferred presentation format</label>
+      <div class="choice-row">
+        <label class="chip"><input type="checkbox" name="presentation_format" value="Lecture"> Lecture</label>
+        <label class="chip"><input type="checkbox" name="presentation_format" value="Surgical Video"> Surgical Video</label>
+        <label class="chip"><input type="checkbox" name="presentation_format" value="Live Surgery"> Live Surgery</label>
+        <label class="chip"><input type="checkbox" name="presentation_format" value="Case Presentation"> Case Presentation</label>
+        <label class="chip"><input type="checkbox" name="presentation_format" value="Panel Discussion"> Panel Discussion</label>
+        <label class="chip"><input type="checkbox" name="presentation_format" value="Workshop"> Workshop</label>
+        <label class="chip"><input type="checkbox" name="presentation_format" value="Wet Lab"> Wet Lab</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="presentation_abstract">Brief description / abstract <span class="opt">Up to 1,000 characters</span></label>
+      <textarea id="presentation_abstract" name="presentation_abstract" maxlength="1000" rows="4"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Do you require AV / technical equipment?</label>
+      <div class="choice-row">
+        <label class="chip"><input type="radio" name="av_required" value="No"> No</label>
+        <label class="chip other-chip"><input type="radio" name="av_required" value="Yes" data-other-target="av_requirements_wrap"> Yes — please specify below</label>
+      </div>
+      <input type="text" name="av_requirements" class="other-input hidden" placeholder="AV / technical requirements" id="av_requirements_wrap">
+    </div>
+
+    <div class="field">
+      <label for="abstract_file">Attach presentation / abstract file <span class="opt">Optional</span></label>
+      <input type="file" id="abstract_file" name="abstract_file">
+    </div>
+  </section>
+
+  <!-- 06 VISA & OFFICIAL INVITATION -->
+  <section class="card">
+    <h2><span class="num">06</span> Visa &amp; Official Invitation</h2>
+
+    <div class="field">
+      <label>Do you require an official invitation letter for a visa / embassy?</label>
+      <div class="choice-row">
+        <label class="chip"><input type="radio" name="visa_invitation_required" value="No"> No</label>
+        <label class="chip"><input type="radio" name="visa_invitation_required" value="Yes" data-other-target="visa-block"> Yes</label>
+      </div>
+    </div>
+
+    <div id="visa-block" class="grid2 hidden">
+      <div class="field">
+        <label for="passport_full_name">Passport full name <span class="opt">As shown in passport</span></label>
+        <input type="text" id="passport_full_name" name="passport_full_name">
+      </div>
+      <div class="field">
+        <label for="passport_number">Passport number</label>
+        <input type="text" id="passport_number" name="passport_number">
+      </div>
+      <div class="field">
+        <label for="nationality">Nationality</label>
+        <input type="text" id="nationality" name="nationality">
+      </div>
+      <div class="field">
+        <label for="passport_expiry">Passport expiry date</label>
+        <input type="date" id="passport_expiry" name="passport_expiry">
+      </div>
+      <div class="field">
+        <label for="embassy_consulate">Embassy / Consulate <span class="opt">Where the visa application will be submitted</span></label>
+        <input type="text" id="embassy_consulate" name="embassy_consulate">
+      </div>
+    </div>
+    <p class="hint">Please note: an invitation letter is issued for visa-support purposes only and does not guarantee visa approval.</p>
+  </section>
+
+  <!-- 07 TRAVEL & TRANSFER -->
+  <section class="card">
+    <h2><span class="num">07</span> Travel &amp; Transfer</h2>
+
+    <div class="field">
+      <label>Do you require airport transfer on arrival?</label>
+      <div class="choice-row">
+        <label class="chip"><input type="radio" name="transfer_arrival" value="No"> No</label>
+        <label class="chip"><input type="radio" name="transfer_arrival" value="Yes"> Yes</label>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="field">
+        <label for="arrival_airport">Arrival airport</label>
+        <input type="text" id="arrival_airport" name="arrival_airport">
+      </div>
+      <div class="field">
+        <label for="arrival_date">Arrival date</label>
+        <input type="date" id="arrival_date" name="arrival_date">
+      </div>
+      <div class="field">
+        <label for="arrival_time">Arrival time <span class="opt">Local time</span></label>
+        <input type="time" id="arrival_time" name="arrival_time">
+      </div>
+      <div class="field">
+        <label for="flight_number">Flight number</label>
+        <input type="text" id="flight_number" name="flight_number">
+      </div>
+      <div class="field">
+        <label for="departure_date">Departure date</label>
+        <input type="date" id="departure_date" name="departure_date">
+      </div>
+      <div class="field">
+        <label for="departure_time">Departure time <span class="opt">Local time</span></label>
+        <input type="time" id="departure_time" name="departure_time">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Do you require transfer to the airport on departure?</label>
+      <div class="choice-row">
+        <label class="chip"><input type="radio" name="transfer_departure" value="No"> No</label>
+        <label class="chip"><input type="radio" name="transfer_departure" value="Yes"> Yes</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 ACCOMMODATION -->
+  <section class="card">
+    <h2><span class="num">08</span> Accommodation</h2>
+
+    <div class="field">
+      <label>Do you require assistance with hotel accommodation?</label>
+      <div class="choice-row">
+        <label class="chip"><input type="radio" name="hotel_assistance" value="No"> No</label>
+        <label class="chip"><input type="radio" name="hotel_assistance" value="Yes"> Yes</label>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="field">
+        <label for="checkin_date">Check-in date</label>
+        <input type="date" id="checkin_date" name="checkin_date">
+      </div>
+      <div class="field">
+        <label for="checkout_date">Check-out date</label>
+        <input type="date" id="checkout_date" name="checkout_date">
+      </div>
+      <div class="field">
+        <label for="accompanying_persons">Number of accompanying persons</label>
+        <input type="number" min="0" id="accompanying_persons" name="accompanying_persons">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Room preference</label>
+      <div class="choice-row">
+        <label class="chip"><input type="radio" name="room_preference" value="Single"> Single</label>
+        <label class="chip"><input type="radio" name="room_preference" value="Double"> Double</label>
+        <label class="chip"><input type="radio" name="room_preference" value="Twin"> Twin</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 DIETARY & SPECIAL REQUIREMENTS -->
+  <section class="card">
+    <h2><span class="num">09</span> Dietary &amp; Special Requirements</h2>
+
+    <div class="field">
+      <label>Dietary preferences / restrictions</label>
+      <div class="choice-row">
+        <label class="chip"><input type="checkbox" name="dietary" value="No restrictions"> No restrictions</label>
+        <label class="chip"><input type="checkbox" name="dietary" value="Vegetarian"> Vegetarian</label>
+        <label class="chip"><input type="checkbox" name="dietary" value="Vegan"> Vegan</label>
+        <label class="chip"><input type="checkbox" name="dietary" value="Gluten-free"> Gluten-free</label>
+        <label class="chip other-chip"><input type="checkbox" name="dietary" value="Other" data-other-target="dietary_other_wrap"> Other</label>
+      </div>
+      <input type="text" name="dietary_other" class="other-input hidden" placeholder="Please specify" id="dietary_other_wrap">
+    </div>
+
+    <div class="grid2">
+      <div class="field">
+        <label for="allergies_requirements">Allergies / special requirements</label>
+        <input type="text" id="allergies_requirements" name="allergies_requirements">
+      </div>
+      <div class="field">
+        <label for="accessibility_requirements">Special accessibility requirements <span class="opt">If applicable</span></label>
+        <input type="text" id="accessibility_requirements" name="accessibility_requirements">
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 PROFESSIONAL MATERIALS -->
+  <section class="card">
+    <h2><span class="num">10</span> Professional Materials</h2>
+    <p class="hint">Please attach the following materials, where applicable</p>
+
+    <div class="grid2">
+      <div class="field">
+        <label for="photo_file">High-resolution professional photograph</label>
+        <input type="file" id="photo_file" name="photo_file" accept="image/*">
+      </div>
+      <div class="field">
+        <label for="logo_file">Logo of your clinic / institution</label>
+        <input type="file" id="logo_file" name="logo_file" accept="image/*">
+      </div>
+      <div class="field">
+        <label for="certificate_file">Diploma / certificate</label>
+        <input type="file" id="certificate_file" name="certificate_file">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="short_biography">Short biography for the official program <span class="opt">50–100 words</span></label>
+      <textarea id="short_biography" name="short_biography" rows="4"></textarea>
+    </div>
+  </section>
+
+  <!-- 11 SOCIAL MEDIA & PROMOTION -->
+  <section class="card">
+    <h2><span class="num">11</span> Social Media &amp; Promotion</h2>
+    <div class="grid2">
+      <div class="field">
+        <label for="instagram">Instagram</label>
+        <input type="text" id="instagram" name="instagram">
+      </div>
+      <div class="field">
+        <label for="linkedin">LinkedIn</label>
+        <input type="text" id="linkedin" name="linkedin">
+      </div>
+      <div class="field">
+        <label for="other_social_media">Other social media</label>
+        <input type="text" id="other_social_media" name="other_social_media">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>May the Beauty Expert Summit organization use your photo, biography, presentation title and professional information for conference promotion?</label>
+      <div class="choice-row">
+        <label class="chip"><input type="radio" name="promo_consent" value="Yes"> Yes</label>
+        <label class="chip"><input type="radio" name="promo_consent" value="No"> No</label>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 ADDITIONAL INFORMATION -->
+  <section class="card">
+    <h2><span class="num">12</span> Additional Information</h2>
+    <div class="field">
+      <label for="additional_information">Do you have any additional requests or information that the organizing committee should know?</label>
+      <textarea id="additional_information" name="additional_information" rows="4"></textarea>
+    </div>
+  </section>
+
+  <!-- 13 CONFIRMATION -->
+  <section class="card">
+    <h2><span class="num">13</span> Confirmation</h2>
+
+    <div class="field checkbox-list">
+      <label class="checkline"><input type="checkbox" id="confirm_info_correct" name="confirm_info_correct" required> I confirm that the information provided above is correct. *</label>
+      <label class="checkline"><input type="checkbox" id="agree_receive_info" name="agree_receive_info"> I agree to receive official information regarding Beauty Expert Summit 2026.</label>
+      <label class="checkline"><input type="checkbox" id="understand_photo_video" name="understand_photo_video" required> I understand that photographs and video recordings may be made during the event for educational and promotional purposes. *</label>
+    </div>
+
+    <div class="grid2">
+      <div class="field">
+        <label for="confirmation_date">Date *</label>
+        <input type="date" id="confirmation_date" name="confirmation_date" required>
+      </div>
+      <div class="field">
+        <label for="signature">Signature <span class="opt">Type your full name as signature</span> *</label>
+        <input type="text" id="signature" name="signature" required>
+      </div>
+    </div>
+  </section>
+
+  <div class="submit-row">
+    <button type="submit" id="submitBtn">Submit registration</button>
+    <p id="formStatus" class="form-status" aria-live="polite"></p>
+  </div>
+
+</form>
+</main>
+
+<footer>
+  <p>Thank you for being part of Beauty Expert Summit 2026.</p>
+</footer>
+
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
