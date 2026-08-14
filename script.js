@@ -117,12 +117,7 @@
       payload.submitted_at = new Date().toISOString();
       payload.page_url = window.location.href;
 
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "text/plain;charset=utf-8" },
-        body: JSON.stringify(payload),
-      });
+      await sendRegistration(JSON.stringify(payload));
 
       // "no-cors" gives an opaque response — we can't read it, so we assume
       // success once fetch resolves without throwing a network error.
@@ -133,11 +128,28 @@
     } catch (err) {
       console.error(err);
       setStatus(
-        "Something went wrong while sending the form. Please check your connection and try again.",
+        "We couldn't confirm the submission went through — please check your connection and try again. If the problem repeats, your data may still have been received.",
         "err"
       );
     } finally {
       submitBtn.disabled = false;
     }
   });
+
+  // A single flaky attempt shouldn't be treated as a hard failure — retry once
+  // before surfacing an error, since transient network/extension hiccups are
+  // common with cross-origin "no-cors" requests like this one.
+  async function sendRegistration(body, attempt = 1) {
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body,
+      });
+    } catch (err) {
+      if (attempt >= 2) throw err;
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      return sendRegistration(body, attempt + 1);
+    }
+  }
 })();
