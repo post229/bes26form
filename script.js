@@ -10,11 +10,15 @@
   const stepCounter = document.getElementById("stepCounter");
   const progressFill = document.getElementById("progressFill");
 
+  const finalIcon = document.getElementById("finalIcon");
+
   const steps = Array.from(document.querySelectorAll(".step"));
   const formSteps = steps.filter((s) => !s.classList.contains("step-final"));
   const totalFormSteps = formSteps.length;
   const finalIndex = steps.length - 1;
   let currentIndex = 0;
+  const SLIDE_DISTANCE = "28px";
+  const EXIT_DURATION = 420;
 
   // ---- "Other" / conditional field toggles ----
   document.querySelectorAll("[data-other-target]").forEach((trigger) => {
@@ -39,23 +43,38 @@
   });
 
   // ---- Wizard navigation ----
-  function showStep(index) {
-    steps.forEach((stepEl, i) => {
-      const isActive = i === index;
-      stepEl.classList.toggle("active", isActive);
-      if (isActive) {
-        stepEl.classList.remove("animate-in");
-        void stepEl.offsetWidth; // force reflow so the animation restarts every time
-        stepEl.classList.add("animate-in");
-        stepEl.scrollTop = 0;
-      }
-    });
+  // direction: 1 = moving forward (Next / submit), -1 = moving backward (Back / restart)
+  function showStep(index, direction = 1) {
+    const prevEl = steps[currentIndex];
+    const nextEl = steps[index];
+
+    if (prevEl && prevEl !== nextEl) {
+      prevEl.style.setProperty("--slide-x", direction >= 0 ? `-${SLIDE_DISTANCE}` : SLIDE_DISTANCE);
+      prevEl.classList.remove("active");
+      prevEl.classList.add("exiting");
+      window.setTimeout(() => {
+        prevEl.classList.remove("exiting");
+        prevEl.style.removeProperty("--slide-x");
+      }, EXIT_DURATION);
+    }
+
+    nextEl.classList.remove("exiting", "active");
+    nextEl.style.setProperty("--slide-x", direction >= 0 ? SLIDE_DISTANCE : `-${SLIDE_DISTANCE}`);
+    void nextEl.offsetWidth; // commit the pre-animation position before transitioning in
+    nextEl.classList.add("active");
+    nextEl.style.setProperty("--slide-x", "0px");
+    nextEl.scrollTop = 0;
+
+    currentIndex = index;
 
     const isFinal = index === finalIndex;
     document.body.classList.toggle("at-final", isFinal);
 
     if (isFinal) {
       progressFill.style.width = "100%";
+      finalIcon.classList.remove("play");
+      void finalIcon.offsetWidth; // restart the draw-in animation every time this screen shows
+      finalIcon.classList.add("play");
       return;
     }
 
@@ -82,15 +101,13 @@
   nextBtn.addEventListener("click", () => {
     if (!validateStep(steps[currentIndex])) return;
     if (currentIndex < totalFormSteps - 1) {
-      currentIndex++;
-      showStep(currentIndex);
+      showStep(currentIndex + 1, 1);
     }
   });
 
   backBtn.addEventListener("click", () => {
     if (currentIndex > 0) {
-      currentIndex--;
-      showStep(currentIndex);
+      showStep(currentIndex - 1, -1);
     }
   });
 
@@ -99,8 +116,7 @@
     form.classList.remove("was-validated");
     document.querySelectorAll(".other-input").forEach((el) => el.classList.add("hidden"));
     setFooterStatus("", "");
-    currentIndex = 0;
-    showStep(currentIndex);
+    showStep(0, -1);
   });
 
   // Enter advances to the next step instead of doing nothing / submitting early —
@@ -204,8 +220,7 @@
       // "no-cors" gives an opaque response — we can't read it, so we assume
       // success once fetch resolves without throwing a network error.
       setFooterStatus("", "");
-      currentIndex = finalIndex;
-      showStep(currentIndex);
+      showStep(finalIndex, 1);
     } catch (err) {
       console.error(err);
       setFooterStatus(
