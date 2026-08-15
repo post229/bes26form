@@ -3,7 +3,18 @@
 
   const form = document.getElementById("regForm");
   const submitBtn = document.getElementById("submitBtn");
-  const statusEl = document.getElementById("formStatus");
+  const nextBtn = document.getElementById("nextBtn");
+  const backBtn = document.getElementById("backBtn");
+  const restartBtn = document.getElementById("restartBtn");
+  const footerStatus = document.getElementById("footerStatus");
+  const stepCounter = document.getElementById("stepCounter");
+  const progressFill = document.getElementById("progressFill");
+
+  const steps = Array.from(document.querySelectorAll(".step"));
+  const formSteps = steps.filter((s) => !s.classList.contains("step-final"));
+  const totalFormSteps = formSteps.length;
+  const finalIndex = steps.length - 1;
+  let currentIndex = 0;
 
   // ---- "Other" / conditional field toggles ----
   document.querySelectorAll("[data-other-target]").forEach((trigger) => {
@@ -25,6 +36,82 @@
         target.classList.toggle("hidden", !trigger.checked);
       }
     });
+  });
+
+  // ---- Wizard navigation ----
+  function showStep(index) {
+    steps.forEach((stepEl, i) => {
+      const isActive = i === index;
+      stepEl.classList.toggle("active", isActive);
+      if (isActive) {
+        stepEl.classList.remove("animate-in");
+        void stepEl.offsetWidth; // force reflow so the animation restarts every time
+        stepEl.classList.add("animate-in");
+        stepEl.scrollTop = 0;
+      }
+    });
+
+    const isFinal = index === finalIndex;
+    document.body.classList.toggle("at-final", isFinal);
+
+    if (isFinal) {
+      progressFill.style.width = "100%";
+      return;
+    }
+
+    const stepNum = index + 1;
+    stepCounter.textContent = `Step ${stepNum} of ${totalFormSteps}`;
+    progressFill.style.width = ((stepNum - 1) / totalFormSteps) * 100 + "%";
+    backBtn.disabled = index === 0;
+
+    const isLastFormStep = stepNum === totalFormSteps;
+    nextBtn.classList.toggle("hidden", isLastFormStep);
+    submitBtn.classList.toggle("hidden", !isLastFormStep);
+  }
+
+  function validateStep(stepEl) {
+    const invalidField = stepEl.querySelector(":invalid");
+    if (invalidField) {
+      form.classList.add("was-validated");
+      invalidField.reportValidity();
+      return false;
+    }
+    return true;
+  }
+
+  nextBtn.addEventListener("click", () => {
+    if (!validateStep(steps[currentIndex])) return;
+    if (currentIndex < totalFormSteps - 1) {
+      currentIndex++;
+      showStep(currentIndex);
+    }
+  });
+
+  backBtn.addEventListener("click", () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      showStep(currentIndex);
+    }
+  });
+
+  restartBtn.addEventListener("click", () => {
+    form.reset();
+    form.classList.remove("was-validated");
+    document.querySelectorAll(".other-input").forEach((el) => el.classList.add("hidden"));
+    setFooterStatus("", "");
+    currentIndex = 0;
+    showStep(currentIndex);
+  });
+
+  // Enter advances to the next step instead of doing nothing / submitting early —
+  // except inside a textarea, where Enter should just insert a newline as usual.
+  form.addEventListener("keydown", (e) => {
+    if (e.key !== "Enter" || e.target.tagName === "TEXTAREA") return;
+    const isLastFormStep = currentIndex === totalFormSteps - 1;
+    if (!isLastFormStep) {
+      e.preventDefault();
+      nextBtn.click();
+    }
   });
 
   // ---- Collect checkbox groups into arrays, everything else as scalar values ----
@@ -85,23 +172,18 @@
     return files;
   }
 
-  function setStatus(message, kind) {
-    statusEl.textContent = message;
-    statusEl.className = "form-status" + (kind ? " " + kind : "");
+  function setFooterStatus(message, kind) {
+    footerStatus.textContent = message;
+    footerStatus.className = "footer-status" + (kind ? " " + kind : "");
   }
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    form.classList.add("was-validated");
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
+    if (!validateStep(steps[currentIndex])) return;
 
     if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.indexOf("PASTE_YOUR") === 0) {
-      setStatus(
+      setFooterStatus(
         "Форма ещё не подключена к Google Таблице. Укажите GOOGLE_SCRIPT_URL в config.js.",
         "err"
       );
@@ -109,7 +191,7 @@
     }
 
     submitBtn.disabled = true;
-    setStatus("Sending your registration…", "");
+    setFooterStatus("Sending your registration…", "sending");
 
     try {
       const payload = collectFormData();
@@ -121,21 +203,17 @@
 
       // "no-cors" gives an opaque response — we can't read it, so we assume
       // success once fetch resolves without throwing a network error.
-      setStatus("Thank you! Your registration has been submitted.", "ok");
-      form.reset();
-      document.querySelectorAll(".other-input").forEach((el) => el.classList.add("hidden"));
+      setFooterStatus("", "");
+      currentIndex = finalIndex;
+      showStep(currentIndex);
     } catch (err) {
       console.error(err);
-      setStatus(
+      setFooterStatus(
         "We couldn't confirm the submission went through — please check your connection and try again. If the problem repeats, your data may still have been received.",
         "err"
       );
     } finally {
       submitBtn.disabled = false;
-      // Keep the confirmation/error message in view — it sits right below the
-      // submit button, not at the top of the page, so scrolling to it (instead
-      // of to the top) avoids the message being missed entirely.
-      statusEl.scrollIntoView({ behavior: "instant", block: "center" });
     }
   });
 
@@ -155,4 +233,6 @@
       return sendRegistration(body, attempt + 1);
     }
   }
+
+  showStep(0);
 })();
