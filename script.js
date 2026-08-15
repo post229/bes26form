@@ -124,7 +124,6 @@
       setStatus("Thank you! Your registration has been submitted.", "ok");
       form.reset();
       document.querySelectorAll(".other-input").forEach((el) => el.classList.add("hidden"));
-      window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
       console.error(err);
       setStatus(
@@ -133,6 +132,10 @@
       );
     } finally {
       submitBtn.disabled = false;
+      // Keep the confirmation/error message in view — it sits right below the
+      // submit button, not at the top of the page, so scrolling to it (instead
+      // of to the top) avoids the message being missed entirely.
+      statusEl.scrollIntoView({ behavior: "instant", block: "center" });
     }
   });
 
