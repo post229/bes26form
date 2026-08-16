@@ -286,6 +286,14 @@ html, body {
     margin: 0 auto;
   }
 
+  .promo-logo-full {
+    display: block;
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    margin-bottom: 32px;
+  }
+
   .promo-kicker {
     font-size: 12px;
     font-weight: 700;
