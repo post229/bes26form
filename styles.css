@@ -261,6 +261,8 @@ html, body {
     color: var(--sky);
     padding: 40px 40px 32px;
     position: relative;
+    border-right: 2px solid var(--accent);
+    box-shadow: 6px 0 28px rgba(5, 15, 35, 0.18);
   }
 
   .promo-inner {
@@ -271,18 +273,13 @@ html, body {
   .promo-logo-row {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 36px;
+    margin-bottom: 40px;
   }
 
-  .promo-logo-row img { width: 34px; height: 34px; border-radius: 50%; }
-
-  .promo-logo-row span {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--cream-dim);
+  .promo-logo-full {
+    width: 220px;
+    height: auto;
+    display: block;
   }
 
   .promo-kicker {
