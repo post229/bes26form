@@ -5,20 +5,44 @@
   const submitBtn = document.getElementById("submitBtn");
   const nextBtn = document.getElementById("nextBtn");
   const backBtn = document.getElementById("backBtn");
+  const startBtn = document.getElementById("startBtn");
   const restartBtn = document.getElementById("restartBtn");
   const footerStatus = document.getElementById("footerStatus");
   const stepCounter = document.getElementById("stepCounter");
   const progressFill = document.getElementById("progressFill");
-
   const finalIcon = document.getElementById("finalIcon");
 
+  // All steps in DOM order: intro screen, every form step (some track-specific
+  // via data-tracks), and the final thank-you screen.
   const steps = Array.from(document.querySelectorAll(".step"));
-  const formSteps = steps.filter((s) => !s.classList.contains("step-final"));
-  const totalFormSteps = formSteps.length;
-  const finalIndex = steps.length - 1;
-  let currentIndex = 0;
+  const introEl = steps[0];
+  const finalEl = steps[steps.length - 1];
+  let currentStepEl = introEl;
   const SLIDE_DISTANCE = "28px";
   const EXIT_DURATION = 420;
+
+  // ---- Registration track (drives which steps are shown) ----
+  // "Speaker / Lecturer", "Moderator", "Workshop / Wet Lab Instructor" and
+  // "Live Surgery Participant" all follow the same "speaker" track.
+  function getTrack() {
+    const checked = form.querySelector('input[name="participation_status"]:checked');
+    if (!checked) return null;
+    if (checked.value === "Exhibitor / Industry Representative") return "exhibitor";
+    if (checked.value === "Participant / Delegate") return "participant";
+    return "speaker";
+  }
+
+  function stepMatchesTrack(stepEl, track) {
+    const tracks = stepEl.dataset.tracks;
+    if (!tracks) return true; // universal step
+    if (!track) return false; // track-specific step, but role not chosen yet
+    return tracks.split(",").includes(track);
+  }
+
+  function getVisibleSteps() {
+    const track = getTrack();
+    return steps.filter((s) => stepMatchesTrack(s, track));
+  }
 
   // ---- "Other" / conditional field toggles ----
   document.querySelectorAll("[data-other-target]").forEach((trigger) => {
@@ -43,10 +67,9 @@
   });
 
   // ---- Wizard navigation ----
-  // direction: 1 = moving forward (Next / submit), -1 = moving backward (Back / restart)
-  function showStep(index, direction = 1) {
-    const prevEl = steps[currentIndex];
-    const nextEl = steps[index];
+  // direction: 1 = moving forward, -1 = moving backward
+  function goTo(nextEl, direction = 1) {
+    const prevEl = currentStepEl;
 
     if (prevEl && prevEl !== nextEl) {
       prevEl.style.setProperty("--slide-x", direction >= 0 ? `-${SLIDE_DISTANCE}` : SLIDE_DISTANCE);
@@ -65,10 +88,15 @@
     nextEl.style.setProperty("--slide-x", "0px");
     nextEl.scrollTop = 0;
 
-    currentIndex = index;
+    currentStepEl = nextEl;
+    updateChrome();
+  }
 
-    const isFinal = index === finalIndex;
+  function updateChrome() {
+    const isFinal = currentStepEl === finalEl;
+    const isIntro = currentStepEl === introEl;
     document.body.classList.toggle("at-final", isFinal);
+    document.body.classList.toggle("at-intro", isIntro);
 
     if (isFinal) {
       progressFill.style.width = "100%";
@@ -77,11 +105,19 @@
       finalIcon.classList.add("play");
       return;
     }
+    if (isIntro) {
+      progressFill.style.width = "0%";
+      return;
+    }
 
-    const stepNum = index + 1;
+    const visible = getVisibleSteps();
+    const idx = visible.indexOf(currentStepEl); // 0 = intro, so form steps start at 1
+    const totalFormSteps = visible.length - 2; // minus intro and final
+    const stepNum = idx; // intro occupies position 0, so form step N sits at index N
+
     stepCounter.textContent = `Step ${stepNum} of ${totalFormSteps}`;
     progressFill.style.width = ((stepNum - 1) / totalFormSteps) * 100 + "%";
-    backBtn.disabled = index === 0;
+    backBtn.disabled = false; // Back from the first form step returns to the intro
 
     const isLastFormStep = stepNum === totalFormSteps;
     nextBtn.classList.toggle("hidden", isLastFormStep);
@@ -98,16 +134,25 @@
     return true;
   }
 
+  startBtn.addEventListener("click", () => {
+    const visible = getVisibleSteps();
+    goTo(visible[1], 1); // first form step (the role question) right after intro
+  });
+
   nextBtn.addEventListener("click", () => {
-    if (!validateStep(steps[currentIndex])) return;
-    if (currentIndex < totalFormSteps - 1) {
-      showStep(currentIndex + 1, 1);
+    if (!validateStep(currentStepEl)) return;
+    const visible = getVisibleSteps();
+    const idx = visible.indexOf(currentStepEl);
+    if (idx >= 0 && idx < visible.length - 2) {
+      goTo(visible[idx + 1], 1);
     }
   });
 
   backBtn.addEventListener("click", () => {
-    if (currentIndex > 0) {
-      showStep(currentIndex - 1, -1);
+    const visible = getVisibleSteps();
+    const idx = visible.indexOf(currentStepEl);
+    if (idx > 0) {
+      goTo(visible[idx - 1], -1);
     }
   });
 
@@ -115,15 +160,18 @@
     form.reset();
     form.classList.remove("was-validated");
     document.querySelectorAll(".other-input").forEach((el) => el.classList.add("hidden"));
+    document.getElementById("visa-block").classList.add("hidden");
     setFooterStatus("", "");
-    showStep(0, -1);
+    goTo(introEl, -1);
   });
 
   // Enter advances to the next step instead of doing nothing / submitting early —
   // except inside a textarea, where Enter should just insert a newline as usual.
   form.addEventListener("keydown", (e) => {
     if (e.key !== "Enter" || e.target.tagName === "TEXTAREA") return;
-    const isLastFormStep = currentIndex === totalFormSteps - 1;
+    const visible = getVisibleSteps();
+    const idx = visible.indexOf(currentStepEl);
+    const isLastFormStep = idx === visible.length - 2;
     if (!isLastFormStep) {
       e.preventDefault();
       nextBtn.click();
@@ -137,6 +185,11 @@
 
     Array.from(form.elements).forEach((el) => {
       if (!el.name || el.disabled) return;
+      // Skip fields that live inside a step not applicable to the chosen
+      // track, so leftover/empty values from an abandoned track never
+      // overwrite a same-named field that's actually in use.
+      const stepEl = el.closest(".step");
+      if (stepEl && !getVisibleSteps().includes(stepEl)) return;
 
       if (el.type === "checkbox") {
         if (el.name === "confirm_info_correct" || el.name === "understand_photo_video" || el.name === "agree_receive_info") {
@@ -178,12 +231,22 @@
   }
 
   async function collectFiles() {
+    const visible = getVisibleSteps();
     const fileInputs = form.querySelectorAll('input[type="file"]');
     const files = {};
     for (const input of fileInputs) {
+      const stepEl = input.closest(".step");
+      if (stepEl && !visible.includes(stepEl)) continue;
       if (input.files && input.files[0]) {
         files[input.name] = await fileToBase64(input.files[0]);
       }
+    }
+    // The exhibitor track uses a differently-named logo input so it never
+    // collides with the speaker track's file input of the same purpose;
+    // normalize both into the same "logo_file" key expected by the sheet.
+    if (files.exhibitor_logo_file && !files.logo_file) {
+      files.logo_file = files.exhibitor_logo_file;
+      delete files.exhibitor_logo_file;
     }
     return files;
   }
@@ -196,7 +259,7 @@
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    if (!validateStep(steps[currentIndex])) return;
+    if (!validateStep(currentStepEl)) return;
 
     if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.indexOf("PASTE_YOUR") === 0) {
       setFooterStatus(
@@ -220,7 +283,7 @@
       // "no-cors" gives an opaque response — we can't read it, so we assume
       // success once fetch resolves without throwing a network error.
       setFooterStatus("", "");
-      showStep(finalIndex, 1);
+      goTo(finalEl, 1);
     } catch (err) {
       console.error(err);
       setFooterStatus(
@@ -249,5 +312,5 @@
     }
   }
 
-  showStep(0);
+  updateChrome();
 })();

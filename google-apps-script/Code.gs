@@ -77,6 +77,16 @@ var COLUMNS = [
   "photo_file_link",
   "logo_file_link",
   "certificate_file_link",
+  "company_name",
+  "industry_category",
+  "industry_category_other",
+  "company_website",
+  "company_role",
+  "team_size",
+  "showcase_description",
+  "booth_size",
+  "marketing_materials_file_link",
+  "ticket_interest",
 ];
 
 // Human-readable column headers shown in the sheet, in the same order as COLUMNS.
@@ -148,6 +158,16 @@ var HEADER_LABELS = [
   "Файл: фото (ссылка)",
   "Файл: логотип клиники (ссылка)",
   "Файл: сертификат (ссылка)",
+  "Название компании / бренда",
+  "Отрасль / категория продукции",
+  "Отрасль — другое",
+  "Сайт компании",
+  "Роль в компании",
+  "Кол-во представителей на стенде",
+  "Что хотите представить на стенде",
+  "Предпочтительный размер стенда",
+  "Файл: маркетинговые материалы (ссылка)",
+  "Интересующий билет",
 ];
 
 function doPost(e) {
