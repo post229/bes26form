@@ -232,17 +232,20 @@ html, body {
 .header-icon-link {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 34px;
+  gap: 7px;
   height: 34px;
-  border-radius: 50%;
+  padding: 0 15px;
+  border-radius: 999px;
   border: 1px solid rgba(243, 234, 217, 0.28);
   color: var(--cream);
   background: rgba(255, 255, 255, 0.04);
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
   transition: background 0.15s, border-color 0.15s, transform 0.15s;
 }
 
-.header-icon-link svg { width: 16px; height: 16px; }
+.header-icon-link svg { width: 16px; height: 16px; flex-shrink: 0; }
 
 .header-icon-link:hover {
   background: rgba(201, 169, 110, 0.18);

@@ -18,20 +18,20 @@
   // Contextual objection-handling copy shown in the desktop promo panel,
   // matched to whichever step the visitor is currently answering.
   const STEP_TIPS = {
-    intro: ["New to BES?", "This is a clinical medical summit for licensed professionals — not a general beauty event. Expect practical, case-based content across three specialities."],
+    intro: ["New to the summit?", "This is a clinical medical summit for licensed professionals — not a general beauty event. Expect practical, case-based content across three disciplines."],
     role: ["Not sure which fits?", "Choose by specialty: ophthalmologists → Day 2 (Wet Lab, keratopigmentation, artificial vision). Surgeons → Day 1 (periorbital, CO₂ laser, rhinoplasty). Aesthetic medicine → regenerative protocols, exosomes, biostimulators."],
-    personal: ["Why we ask this", "Used only for your badge, certificate and official communication about the summit — never shared with third parties."],
+    personal: ["Why we ask this", "Used only for your badge, certificate, and official communication about the summit — never shared with third parties."],
     professional: ["Building your program fit", "Your specialization helps our committee match you to the most relevant sessions and, for speakers, the right review panel."],
-    company: ["Exhibiting at BES", "Around 24 booths across 436 m² of exhibition space, reaching 500+ medical specialists across ophthalmology, plastic surgery and aesthetic medicine."],
-    education: ["Why credentials matter", "BES is a summit for licensed medical professionals with CME/CPD accreditation submitted — this helps us verify eligibility and tailor your certificate."],
-    presentation: ["Speaking at BES", "Faculty attend free, including the gala dinner. Invited keynote speakers may also receive travel support."],
-    visa: ["Need an invitation letter?", "We issue official UGAMC invitation letters within 3–5 business days after registration — for visa-support purposes only, it doesn't guarantee approval."],
+    company: ["Exhibiting at the summit", "Around 24 booths across 436 m² of exhibition space, reaching 500+ medical specialists across ophthalmology, plastic surgery, and aesthetic medicine."],
+    education: ["Why credentials matter", "This is a summit for licensed medical professionals, and CME/CPD accreditation has been submitted — this helps us verify eligibility and tailor your certificate."],
+    presentation: ["Speaking at the summit", "Faculty attend free of charge, including the gala dinner. Invited keynote speakers may also receive travel support."],
+    visa: ["Need an invitation letter?", "We issue official UGAMC invitation letters within 3–5 business days after registration. These letters support your visa application only and don't guarantee approval."],
     travel: ["Getting here is easy", "Alicante–Elche Airport is about 15 minutes from the venue by car, with easy transfers available on request."],
     accommodation: ["Where to stay", "Our partner hotel, Hotel Huerto del Cura, is just 3–5 minutes on foot from Centro de Congresos de Elche."],
     dietary: ["We've got you covered", "Let us know any dietary or accessibility needs and our team will handle the rest at check-in."],
-    materials: ["Why we ask for files", "Your photo, bio and materials go straight into the official program and speaker profile."],
+    materials: ["Why we ask for files", "Your photo, bio, and materials go straight into the official program and speaker profile."],
     "exhibitor-materials": ["Why we ask for files", "Your logo and marketing materials go into the exhibition guide and delegate materials."],
-    social: ["Get featured", "Speakers and delegates who opt in are featured across BES social channels and the official post-event recap."],
+    social: ["Get featured", "Speakers and delegates who opt in are featured across our social channels and the official post-event recap."],
     additional: ["Almost there", "Anything else our organizing committee should know before the summit? Group of 5+? Mention it here for the 15% discount."],
     confirmation: ["About pricing", "Not a payment — just tell us what to prepare. Early Bird pricing (through 30 Sept) is significantly lower than the final rate, and a full 2-day pass costs less than two single days."],
     final: ["What happens next", "Our organizing committee reviews every submission and will reach out by e-mail if anything else is needed."],
@@ -301,7 +301,7 @@
 
     if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL.indexOf("PASTE_YOUR") === 0) {
       setFooterStatus(
-        "Форма ещё не подключена к Google Таблице. Укажите GOOGLE_SCRIPT_URL в config.js.",
+        "This form isn't connected to a Google Sheet yet. Set GOOGLE_SCRIPT_URL in config.js.",
         "err"
       );
       return;
