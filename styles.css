@@ -155,7 +155,7 @@ html, body {
 }
 
 .brand-logo {
-  height: 40px;
+  height: 33px;
   width: auto;
   display: block;
   flex-shrink: 0;
@@ -734,6 +734,13 @@ form#regForm {
 }
 
 .field { margin-top: 24px; }
+
+fieldset.field {
+  border: 0;
+  padding: 0;
+  margin: 24px 0 0;
+  min-width: 0;
+}
 .step-inner h2 + .field,
 .step-inner h2 + .grid2,
 .step-inner .step-intro + .field,
@@ -741,12 +748,14 @@ form#regForm {
 .step-inner .hint + .grid2 { margin-top: 0; }
 .grid2 .field { margin-top: 0; }
 
-label {
+label,
+legend {
   display: block;
   font-size: 13.5px;
   font-weight: 600;
   color: var(--ink);
   margin-bottom: 7px;
+  padding: 0;
 }
 
 .req { color: var(--err); font-weight: 700; }

@@ -182,12 +182,12 @@
     <form id="regForm" novalidate>
 
       <!-- STEP — WHO ARE YOU REGISTERING AS -->
-      <section class="step" data-step="role" data-title="Registration Type">
+      <section class="step" data-step="role">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6.5 7 1-5.2 5 1.2 7-6-3.4-6 3.4 1.2-7L2 9.5l7-1z"/></svg>
           </div>
-          <h2>I'm interested in registering as…</h2>
+          <h2>I'm interested in registering as… <span class="req">*</span></h2>
           <p class="step-intro">Your answer shapes the rest of this form — we'll only ask what's relevant to your role.</p>
 
           <div class="role-grid">
@@ -223,19 +223,19 @@
             </label>
           </div>
 
-          <div class="field">
-            <label>Which day will you attend?</label>
+          <fieldset class="field">
+            <legend>Which day will you attend?</legend>
             <div class="choice-row">
               <label class="chip"><input type="radio" name="attendance_day" value="28 November 2026"> 28 November 2026</label>
               <label class="chip"><input type="radio" name="attendance_day" value="29 November 2026"> 29 November 2026</label>
               <label class="chip"><input type="radio" name="attendance_day" value="Both days"> Both days</label>
             </div>
-          </div>
+          </fieldset>
         </div>
       </section>
 
       <!-- PERSONAL INFORMATION — all tracks -->
-      <section class="step" data-step="personal" data-title="Personal Information">
+      <section class="step" data-step="personal">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8.2" r="3.4"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>
@@ -246,32 +246,32 @@
           <div class="grid2">
             <div class="field">
               <label for="full_name">Full name <span class="req">*</span></label>
-              <input type="text" id="full_name" name="full_name" required>
+              <input type="text" id="full_name" name="full_name" autocomplete="name" required>
             </div>
             <div class="field">
               <label for="date_of_birth">Date of birth <span class="req">*</span></label>
-              <input type="date" id="date_of_birth" name="date_of_birth" required>
+              <input type="date" id="date_of_birth" name="date_of_birth" autocomplete="bday" required>
             </div>
             <div class="field">
               <label for="country">Country <span class="req">*</span></label>
-              <input type="text" id="country" name="country" required>
+              <input type="text" id="country" name="country" autocomplete="country-name" required>
             </div>
             <div class="field">
               <label for="city">City <span class="req">*</span></label>
-              <input type="text" id="city" name="city" required>
+              <input type="text" id="city" name="city" autocomplete="address-level2" required>
             </div>
             <div class="field">
               <label for="phone_whatsapp">Phone / WhatsApp <span class="req">*</span></label>
-              <input type="tel" id="phone_whatsapp" name="phone_whatsapp" placeholder="Include country code" required>
+              <input type="tel" id="phone_whatsapp" name="phone_whatsapp" autocomplete="tel" placeholder="Include country code" required>
             </div>
             <div class="field">
               <label for="email">E-mail <span class="req">*</span></label>
-              <input type="email" id="email" name="email" required>
+              <input type="email" id="email" name="email" autocomplete="email" required>
             </div>
           </div>
 
-          <div class="field">
-            <label>Title / Academic degree</label>
+          <fieldset class="field">
+            <legend>Title / Academic degree</legend>
             <div class="choice-row">
               <label class="chip"><input type="checkbox" name="title_degree" value="MD"> MD</label>
               <label class="chip"><input type="checkbox" name="title_degree" value="PhD"> PhD</label>
@@ -279,20 +279,20 @@
               <label class="chip other-chip"><input type="checkbox" name="title_degree" value="Other" data-other-target="title_degree_other_wrap"> Other</label>
             </div>
             <input type="text" name="title_degree_other" class="other-input hidden" placeholder="Please specify" id="title_degree_other_wrap">
-          </div>
+          </fieldset>
         </div>
       </section>
 
       <!-- PROFESSIONAL INFORMATION — speaker + participant tracks -->
-      <section class="step" data-step="professional" data-title="Professional Information" data-tracks="speaker,participant">
+      <section class="step" data-step="professional" data-tracks="speaker,participant">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="11" rx="2"/><path d="M8.5 8V6a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v2"/><path d="M3.5 13h17"/></svg>
           </div>
           <h2>Professional Information</h2>
 
-          <div class="field">
-            <label>Your specialization</label>
+          <fieldset class="field">
+            <legend>Your specialization</legend>
             <div class="choice-row">
               <label class="chip"><input type="checkbox" name="specialization" value="Aesthetic / Plastic Surgery"> Aesthetic / Plastic Surgery</label>
               <label class="chip"><input type="checkbox" name="specialization" value="Aesthetic Medicine / Cosmetology"> Aesthetic Medicine / Cosmetology</label>
@@ -301,7 +301,7 @@
               <label class="chip other-chip"><input type="checkbox" name="specialization" value="Other" data-other-target="specialization_other_wrap"> Other</label>
             </div>
             <input type="text" name="specialization_other" class="other-input hidden" placeholder="Please specify" id="specialization_other_wrap">
-          </div>
+          </fieldset>
 
           <div class="grid2">
             <div class="field">
@@ -329,7 +329,7 @@
       </section>
 
       <!-- COMPANY INFORMATION — exhibitor track only -->
-      <section class="step" data-step="company" data-title="Company Information" data-tracks="exhibitor">
+      <section class="step" data-step="company" data-tracks="exhibitor">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="11" rx="2"/><path d="M8.5 8V6a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v2"/><path d="M3.5 13h17"/></svg>
@@ -340,16 +340,16 @@
           <div class="grid2">
             <div class="field">
               <label for="company_name">Company / brand name <span class="req">*</span></label>
-              <input type="text" id="company_name" name="company_name" required>
+              <input type="text" id="company_name" name="company_name" autocomplete="organization" required>
             </div>
             <div class="field">
               <label for="company_website">Company website</label>
-              <input type="text" id="company_website" name="company_website">
+              <input type="text" id="company_website" name="company_website" autocomplete="url">
             </div>
           </div>
 
-          <div class="field">
-            <label>Industry / product category</label>
+          <fieldset class="field">
+            <legend>Industry / product category</legend>
             <div class="choice-row">
               <label class="chip"><input type="checkbox" name="industry_category" value="Medical Devices"> Medical Devices</label>
               <label class="chip"><input type="checkbox" name="industry_category" value="Skincare / Cosmetics"> Skincare / Cosmetics</label>
@@ -358,7 +358,7 @@
               <label class="chip other-chip"><input type="checkbox" name="industry_category" value="Other" data-other-target="industry_category_other_wrap"> Other</label>
             </div>
             <input type="text" name="industry_category_other" class="other-input hidden" placeholder="Please specify" id="industry_category_other_wrap">
-          </div>
+          </fieldset>
 
           <div class="grid2">
             <div class="field">
@@ -379,7 +379,7 @@
       </section>
 
       <!-- EDUCATION & QUALIFICATIONS — speaker + participant tracks -->
-      <section class="step" data-step="education" data-title="Education & Qualifications" data-tracks="speaker,participant">
+      <section class="step" data-step="education" data-tracks="speaker,participant">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-4 10 4-10 4-10-4z"/><path d="M6 11.4v4c0 1.5 2.7 3 6 3s6-1.5 6-3v-4"/><path d="M22 9v6"/></svg>
@@ -406,13 +406,13 @@
           </div>
           <div class="field">
             <label for="diploma_file">Attach a copy of your diploma and/or relevant professional certificate</label>
-            <input type="file" id="diploma_file" name="diploma_file">
+            <input type="file" id="diploma_file" name="diploma_file" accept="image/*,.pdf">
           </div>
         </div>
       </section>
 
       <!-- PRESENTATION INFORMATION — speaker track only -->
-      <section class="step" data-step="presentation" data-title="Presentation Information" data-tracks="speaker">
+      <section class="step" data-step="presentation" data-tracks="speaker">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2.5" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0"/><path d="M12 17.5V21M9 21h6"/></svg>
@@ -430,8 +430,8 @@
             </div>
           </div>
 
-          <div class="field">
-            <label>Preferred presentation format</label>
+          <fieldset class="field">
+            <legend>Preferred presentation format</legend>
             <div class="choice-row">
               <label class="chip"><input type="checkbox" name="presentation_format" value="Lecture"> Lecture</label>
               <label class="chip"><input type="checkbox" name="presentation_format" value="Surgical Video"> Surgical Video</label>
@@ -441,44 +441,44 @@
               <label class="chip"><input type="checkbox" name="presentation_format" value="Workshop"> Workshop</label>
               <label class="chip"><input type="checkbox" name="presentation_format" value="Wet Lab"> Wet Lab</label>
             </div>
-          </div>
+          </fieldset>
 
           <div class="field">
             <label for="presentation_abstract">Brief description / abstract <span class="opt">Up to 1,000 characters</span></label>
             <textarea id="presentation_abstract" name="presentation_abstract" maxlength="1000" rows="4"></textarea>
           </div>
 
-          <div class="field">
-            <label>Do you require AV / technical equipment?</label>
+          <fieldset class="field">
+            <legend>Do you require AV / technical equipment?</legend>
             <div class="choice-row">
               <label class="chip"><input type="radio" name="av_required" value="No"> No</label>
               <label class="chip other-chip"><input type="radio" name="av_required" value="Yes" data-other-target="av_requirements_wrap"> Yes — please specify below</label>
             </div>
             <input type="text" name="av_requirements" class="other-input hidden" placeholder="AV / technical requirements" id="av_requirements_wrap">
-          </div>
+          </fieldset>
 
           <div class="field">
             <label for="abstract_file">Attach presentation / abstract file <span class="opt">Optional</span></label>
-            <input type="file" id="abstract_file" name="abstract_file">
+            <input type="file" id="abstract_file" name="abstract_file" accept=".pdf,.doc,.docx">
           </div>
         </div>
       </section>
 
       <!-- VISA & OFFICIAL INVITATION — all tracks -->
-      <section class="step" data-step="visa" data-title="Visa & Official Invitation">
+      <section class="step" data-step="visa">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2.5" width="14" height="19" rx="2"/><circle cx="12" cy="9" r="2.6"/><path d="M8.5 15.5c.8-1.4 2-2 3.5-2s2.7.6 3.5 2"/><path d="M8 19h8"/></svg>
           </div>
           <h2>Visa &amp; Official Invitation</h2>
 
-          <div class="field">
-            <label>Do you require an official invitation letter for a visa / embassy?</label>
+          <fieldset class="field">
+            <legend>Do you require an official invitation letter for a visa / embassy?</legend>
             <div class="choice-row">
               <label class="chip"><input type="radio" name="visa_invitation_required" value="No"> No</label>
               <label class="chip"><input type="radio" name="visa_invitation_required" value="Yes" data-other-target="visa-block"> Yes</label>
             </div>
-          </div>
+          </fieldset>
 
           <div id="visa-block" class="grid2 hidden">
             <div class="field">
@@ -507,20 +507,20 @@
       </section>
 
       <!-- TRAVEL & TRANSFER — all tracks -->
-      <section class="step" data-step="travel" data-title="Travel & Transfer">
+      <section class="step" data-step="travel">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
           </div>
           <h2>Travel &amp; Transfer</h2>
 
-          <div class="field">
-            <label>Do you require airport transfer on arrival?</label>
+          <fieldset class="field">
+            <legend>Do you require airport transfer on arrival?</legend>
             <div class="choice-row">
               <label class="chip"><input type="radio" name="transfer_arrival" value="No"> No</label>
               <label class="chip"><input type="radio" name="transfer_arrival" value="Yes"> Yes</label>
             </div>
-          </div>
+          </fieldset>
 
           <div class="grid2">
             <div class="field">
@@ -549,31 +549,31 @@
             </div>
           </div>
 
-          <div class="field">
-            <label>Do you require transfer to the airport on departure?</label>
+          <fieldset class="field">
+            <legend>Do you require transfer to the airport on departure?</legend>
             <div class="choice-row">
               <label class="chip"><input type="radio" name="transfer_departure" value="No"> No</label>
               <label class="chip"><input type="radio" name="transfer_departure" value="Yes"> Yes</label>
             </div>
-          </div>
+          </fieldset>
         </div>
       </section>
 
       <!-- ACCOMMODATION — all tracks -->
-      <section class="step" data-step="accommodation" data-title="Accommodation">
+      <section class="step" data-step="accommodation">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v7"/><path d="M3 15h18"/><path d="M7 11V8a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v3"/><path d="M3 18v2.4M21 18v2.4"/></svg>
           </div>
           <h2>Accommodation</h2>
 
-          <div class="field">
-            <label>Do you require assistance with hotel accommodation?</label>
+          <fieldset class="field">
+            <legend>Do you require assistance with hotel accommodation?</legend>
             <div class="choice-row">
               <label class="chip"><input type="radio" name="hotel_assistance" value="No"> No</label>
               <label class="chip"><input type="radio" name="hotel_assistance" value="Yes"> Yes</label>
             </div>
-          </div>
+          </fieldset>
 
           <div class="grid2">
             <div class="field">
@@ -590,27 +590,27 @@
             </div>
           </div>
 
-          <div class="field">
-            <label>Room preference</label>
+          <fieldset class="field">
+            <legend>Room preference</legend>
             <div class="choice-row">
               <label class="chip"><input type="radio" name="room_preference" value="Single"> Single</label>
               <label class="chip"><input type="radio" name="room_preference" value="Double"> Double</label>
               <label class="chip"><input type="radio" name="room_preference" value="Twin"> Twin</label>
             </div>
-          </div>
+          </fieldset>
         </div>
       </section>
 
       <!-- DIETARY & SPECIAL REQUIREMENTS — all tracks -->
-      <section class="step" data-step="dietary" data-title="Dietary & Special Requirements">
+      <section class="step" data-step="dietary">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2v8a2 2 0 0 0 4 0V2"/><path d="M8 10v11.4"/><path d="M17 2c-1.7 0-3 2.2-3 5s1.3 5 3 5v9.4"/></svg>
           </div>
           <h2>Dietary &amp; Special Requirements</h2>
 
-          <div class="field">
-            <label>Dietary preferences / restrictions</label>
+          <fieldset class="field">
+            <legend>Dietary preferences / restrictions</legend>
             <div class="choice-row">
               <label class="chip"><input type="checkbox" name="dietary" value="No restrictions"> No restrictions</label>
               <label class="chip"><input type="checkbox" name="dietary" value="Vegetarian"> Vegetarian</label>
@@ -619,7 +619,7 @@
               <label class="chip other-chip"><input type="checkbox" name="dietary" value="Other" data-other-target="dietary_other_wrap"> Other</label>
             </div>
             <input type="text" name="dietary_other" class="other-input hidden" placeholder="Please specify" id="dietary_other_wrap">
-          </div>
+          </fieldset>
 
           <div class="grid2">
             <div class="field">
@@ -635,7 +635,7 @@
       </section>
 
       <!-- PROFESSIONAL MATERIALS — speaker track only -->
-      <section class="step" data-step="materials" data-title="Professional Materials" data-tracks="speaker">
+      <section class="step" data-step="materials" data-tracks="speaker">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5.5-5.5a1.5 1.5 0 0 0-2.1 0L5 19"/></svg>
@@ -654,7 +654,7 @@
             </div>
             <div class="field">
               <label for="certificate_file">Diploma / certificate</label>
-              <input type="file" id="certificate_file" name="certificate_file">
+              <input type="file" id="certificate_file" name="certificate_file" accept="image/*,.pdf">
             </div>
           </div>
 
@@ -666,7 +666,7 @@
       </section>
 
       <!-- EXHIBITOR MATERIALS — exhibitor track only -->
-      <section class="step" data-step="exhibitor-materials" data-title="Exhibitor Materials" data-tracks="exhibitor">
+      <section class="step" data-step="exhibitor-materials" data-tracks="exhibitor">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.6"/><path d="M21 16l-5.5-5.5a1.5 1.5 0 0 0-2.1 0L5 19"/></svg>
@@ -681,24 +681,24 @@
             </div>
             <div class="field">
               <label for="marketing_materials_file">Marketing materials / brochure <span class="opt">Optional</span></label>
-              <input type="file" id="marketing_materials_file" name="marketing_materials_file">
+              <input type="file" id="marketing_materials_file" name="marketing_materials_file" accept="image/*,.pdf,.doc,.docx">
             </div>
           </div>
 
-          <div class="field">
-            <label>Preferred booth size</label>
+          <fieldset class="field">
+            <legend>Preferred booth size</legend>
             <div class="choice-row">
               <label class="chip"><input type="radio" name="booth_size" value="Small (2x2m)"> Small (2×2m)</label>
               <label class="chip"><input type="radio" name="booth_size" value="Medium (3x3m)"> Medium (3×3m)</label>
               <label class="chip"><input type="radio" name="booth_size" value="Large (4x4m+)"> Large (4×4m+)</label>
               <label class="chip"><input type="radio" name="booth_size" value="Not sure yet"> Not sure yet</label>
             </div>
-          </div>
+          </fieldset>
         </div>
       </section>
 
       <!-- SOCIAL MEDIA & PROMOTION — all tracks -->
-      <section class="step" data-step="social" data-title="Social Media & Promotion">
+      <section class="step" data-step="social">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="12" r="2.6"/><circle cx="18" cy="6" r="2.6"/><circle cx="18" cy="18" r="2.6"/><path d="M8.3 10.8l7.4-3.6M8.3 13.2l7.4 3.6"/></svg>
@@ -719,18 +719,18 @@
             </div>
           </div>
 
-          <div class="field">
-            <label>May the Beauty Expert Summit 2026 organizing committee use your photo, biography, presentation title, and professional information for conference promotion?</label>
+          <fieldset class="field">
+            <legend>May the Beauty Expert Summit 2026 organizing committee use your photo, biography, presentation title, and professional information for conference promotion?</legend>
             <div class="choice-row">
               <label class="chip"><input type="radio" name="promo_consent" value="Yes"> Yes</label>
               <label class="chip"><input type="radio" name="promo_consent" value="No"> No</label>
             </div>
-          </div>
+          </fieldset>
         </div>
       </section>
 
       <!-- ADDITIONAL INFORMATION — all tracks -->
-      <section class="step" data-step="additional" data-title="Additional Information">
+      <section class="step" data-step="additional">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4V4z"/><path d="M8 9h8M8 12.5h5"/></svg>
@@ -744,15 +744,15 @@
       </section>
 
       <!-- CONFIRMATION — all tracks -->
-      <section class="step" data-step="confirmation" data-title="Confirmation">
+      <section class="step" data-step="confirmation">
         <div class="step-inner">
           <div class="step-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3.5h6a1 1 0 0 1 1 1V6H8V4.5a1 1 0 0 1 1-1z"/><path d="M8.5 13l2 2 4.5-4.5"/></svg>
           </div>
           <h2>Confirmation</h2>
 
-          <div class="field">
-            <label>I'm interested in… <span class="opt">This is not a payment — just tell us what to prepare for you</span></label>
+          <fieldset class="field">
+            <legend>I'm interested in… <span class="opt">This is not a payment — just tell us what to prepare for you</span></legend>
             <div class="ticket-carousel">
               <label class="ticket-card ticket-card-muted">
                 <input type="radio" name="ticket_interest" value="Not interested yet" checked>
@@ -798,7 +798,7 @@
                 <span class="ticket-note">Both days · Industry staff, no booth</span>
               </label>
             </div>
-          </div>
+          </fieldset>
 
           <div class="field checkbox-list">
             <label class="checkline"><input type="checkbox" id="confirm_info_correct" name="confirm_info_correct" required> I confirm that the information provided above is correct. <span class="req">*</span></label>
