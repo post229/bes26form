@@ -88,7 +88,7 @@
   --navy-800: #0d2143;
   --navy-700: #10327a;
   --frame-grad: linear-gradient(135deg, var(--quantum-navy) 0%, var(--midnight-navy) 55%, var(--innovation-blue) 130%);
-  --promo-grad: radial-gradient(120% 140% at 8% -10%, #0e3a86 0%, var(--midnight-navy) 42%, var(--quantum-navy) 100%);
+  --promo-grad: linear-gradient(165deg, #080b12 0%, var(--quantum-navy) 55%, #0c1420 100%);
   --cream: #f3ead9;
   --cream-dim: #9fb0c2;
   --radius: 14px;
