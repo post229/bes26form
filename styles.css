@@ -589,6 +589,11 @@ html, body {
     color: var(--cream-dim);
     opacity: 0.75;
   }
+
+  .promo-organiser a {
+    color: var(--sky);
+    opacity: 1;
+  }
 }
 
 /* ---------- Progress bar ---------- */
