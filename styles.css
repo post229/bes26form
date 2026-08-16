@@ -1256,6 +1256,23 @@ form.was-validated textarea:invalid { border-color: var(--err); }
 
 #finalStep .form-status:not(:empty) { margin: 12px 0 20px; }
 
+.pay-cta {
+  border: 1px solid var(--line);
+  background: var(--accent-soft);
+  border-radius: var(--radius-lg);
+  padding: 18px 22px;
+  margin: 4px 0 8px;
+  max-width: 46ch;
+}
+
+.pay-cta-text {
+  font-size: 14px;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+
+.pay-cta .nav-btn { margin-top: 0; }
+
 #finalStep .nav-btn { margin-top: 8px; }
 
 /* ---------- Footer / nav ---------- */

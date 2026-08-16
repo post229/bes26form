@@ -43,8 +43,8 @@
       <div class="promo-stats">
         <div class="promo-stat"><strong>2</strong><span>Days of sessions</span></div>
         <div class="promo-stat"><strong>3</strong><span>Disciplines, one stage</span></div>
-        <div class="promo-stat"><strong>500+</strong><span>Medical specialists</span></div>
-        <div class="promo-stat"><strong>436 m²</strong><span>Exhibition area</span></div>
+        <div class="promo-stat"><strong>400+</strong><span>Specialists per track</span></div>
+        <div class="promo-stat"><strong>488 m²</strong><span>Exhibition area</span></div>
       </div>
 
       <div class="promo-venue">
@@ -694,12 +694,38 @@
           </div>
 
           <fieldset class="field">
-            <legend>Preferred booth size</legend>
-            <div class="choice-row">
-              <label class="chip"><input type="radio" name="booth_size" value="Small (2x2m)"> Small (2×2m)</label>
-              <label class="chip"><input type="radio" name="booth_size" value="Medium (3x3m)"> Medium (3×3m)</label>
-              <label class="chip"><input type="radio" name="booth_size" value="Large (4x4m+)"> Large (4×4m+)</label>
-              <label class="chip"><input type="radio" name="booth_size" value="Not sure yet"> Not sure yet</label>
+            <legend>Which partnership package interests you? <span class="opt">This is not a payment — just tell us what to prepare for you</span></legend>
+            <div class="ticket-carousel">
+              <label class="ticket-card ticket-card-muted">
+                <input type="radio" name="partnership_package" value="Not sure yet — contact me" checked>
+                <span class="ticket-name">Not sure yet</span>
+                <span class="ticket-price">—</span>
+                <span class="ticket-note">We'll follow up to discuss</span>
+              </label>
+              <label class="ticket-card">
+                <input type="radio" name="partnership_package" value="Standard — €2,000">
+                <span class="ticket-name">Standard</span>
+                <span class="ticket-price">€2,000</span>
+                <span class="ticket-note">Booth 2×4m · 2 badges</span>
+              </label>
+              <label class="ticket-card">
+                <input type="radio" name="partnership_package" value="Pro — €2,600">
+                <span class="ticket-name">Pro</span>
+                <span class="ticket-price">€2,600</span>
+                <span class="ticket-note">Booth 2×5m · 3 badges · 15-min talk</span>
+              </label>
+              <label class="ticket-card">
+                <input type="radio" name="partnership_package" value="Premium — €3,600">
+                <span class="ticket-name">Premium</span>
+                <span class="ticket-price">€3,600</span>
+                <span class="ticket-note">Top location · 2 delegates + gala</span>
+              </label>
+              <label class="ticket-card">
+                <input type="radio" name="partnership_package" value="Title Partner — €6,000+">
+                <span class="ticket-name">Title Partner</span>
+                <span class="ticket-price">€6,000+</span>
+                <span class="ticket-note">1 available · opening speech</span>
+              </label>
             </div>
           </fieldset>
         </div>
@@ -855,6 +881,13 @@
         <p class="final-text">Your registration for Beauty Expert Summit 2026 has been received. Our organizing committee will review your submission and reach out if any further information is needed.</p>
         <p class="final-text final-event">28–29 November 2026 · Alicante / Elche, Spain</p>
         <p id="formStatus" class="form-status" aria-live="polite"></p>
+        <div id="payCta" class="pay-cta hidden">
+          <p class="pay-cta-text">Ready to secure your spot? Complete payment for <strong id="payCtaTicket"></strong> now.</p>
+          <a id="payCtaLink" href="#" target="_blank" rel="noopener" class="nav-btn primary">
+            Pay now — Stripe
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          </a>
+        </div>
         <button type="button" id="restartBtn" class="nav-btn secondary">
           <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 1 3 6.7"/><path d="M3 21v-5h5"/></svg>
           Submit another response

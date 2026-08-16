@@ -14,6 +14,9 @@
   const promoTip = document.getElementById("promoTip");
   const promoTipTitle = document.getElementById("promoTipTitle");
   const promoTipText = document.getElementById("promoTipText");
+  const payCta = document.getElementById("payCta");
+  const payCtaTicket = document.getElementById("payCtaTicket");
+  const payCtaLink = document.getElementById("payCtaLink");
 
   // Contextual objection-handling copy shown in the desktop promo panel,
   // matched to whichever step the visitor is currently answering.
@@ -22,7 +25,7 @@
     role: ["Not sure which fits?", "Choose by specialty: ophthalmologists → Day 2 (Wet Lab, keratopigmentation, artificial vision). Surgeons → Day 1 (periorbital, CO₂ laser, rhinoplasty). Aesthetic medicine → regenerative protocols, exosomes, biostimulators."],
     personal: ["Why we ask this", "Used only for your badge, certificate, and official communication about the summit — never shared with third parties."],
     professional: ["Building your program fit", "Your specialization helps our committee match you to the most relevant sessions and, for speakers, the right review panel."],
-    company: ["Exhibiting at the summit", "Around 24 booths across 436 m² of exhibition space, reaching 500+ medical specialists across ophthalmology, plastic surgery, and aesthetic medicine."],
+    company: ["Exhibiting at the summit", "17 booths across 488 m² of exhibition space, reaching 400+ specialists per track across ophthalmology, plastic surgery, and aesthetic medicine."],
     education: ["Why credentials matter", "This is a summit for licensed medical professionals, and CME/CPD accreditation has been submitted — this helps us verify eligibility and tailor your certificate."],
     presentation: ["Speaking at the summit", "Faculty attend free of charge, including the gala dinner. Invited keynote speakers may also receive travel support."],
     visa: ["Need an invitation letter?", "We issue official UGAMC invitation letters within 3–5 business days after registration. These letters support your visa application only and don't guarantee approval."],
@@ -30,7 +33,7 @@
     accommodation: ["Where to stay", "Our partner hotel, Hotel Huerto del Cura, is just 3–5 minutes on foot from Centro de Congresos de Elche."],
     dietary: ["We've got you covered", "Let us know any dietary or accessibility needs and our team will handle the rest at check-in."],
     materials: ["Why we ask for files", "Your photo, bio, and materials go straight into the official program and speaker profile."],
-    "exhibitor-materials": ["Why we ask for files", "Your logo and marketing materials go into the exhibition guide and delegate materials."],
+    "exhibitor-materials": ["Choosing a package", "Not sure yet is fine — our partnerships team will follow up either way. Pro and above include a speaking slot; Premium and Title include gala seats and delegate tickets."],
     social: ["Get featured", "Speakers and delegates who opt in are featured across our social channels and the official post-event recap."],
     additional: ["Almost there", "Anything else our organizing committee should know before the summit? Group of 5+? Mention it here for the 15% discount."],
     confirmation: ["About pricing", "Not a payment — just tell us what to prepare. Early Bird pricing (through 30 Sept) is significantly lower than the final rate, and a full 2-day pass costs less than two single days."],
@@ -200,6 +203,7 @@
     document.querySelectorAll(".other-input").forEach((el) => el.classList.add("hidden"));
     document.getElementById("visa-block").classList.add("hidden");
     setFooterStatus("", "");
+    payCta.classList.add("hidden");
     goTo(introEl, -1);
   });
 
@@ -294,6 +298,22 @@
     footerStatus.className = "footer-status" + (kind ? " " + kind : "");
   }
 
+  // Payment happens after registration, not instead of it — the Google
+  // Sheet already has the submission by the time this runs. Only offer
+  // the button when the visitor picked a paid ticket and a real Stripe
+  // Payment Link has been configured for it.
+  function updatePayCta(ticketValue) {
+    const links = typeof TICKET_PAYMENT_LINKS === "object" && TICKET_PAYMENT_LINKS ? TICKET_PAYMENT_LINKS : {};
+    const link = links[ticketValue];
+    if (!ticketValue || ticketValue === "Not interested yet" || !link) {
+      payCta.classList.add("hidden");
+      return;
+    }
+    payCtaTicket.textContent = ticketValue.replace(/\s*—\s*€/, " — €");
+    payCtaLink.href = link;
+    payCta.classList.remove("hidden");
+  }
+
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
@@ -321,6 +341,7 @@
       // "no-cors" gives an opaque response — we can't read it, so we assume
       // success once fetch resolves without throwing a network error.
       setFooterStatus("", "");
+      updatePayCta(payload.ticket_interest);
       goTo(finalEl, 1);
     } catch (err) {
       console.error(err);

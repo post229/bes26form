@@ -84,7 +84,7 @@ var COLUMNS = [
   "company_role",
   "team_size",
   "showcase_description",
-  "booth_size",
+  "partnership_package",
   "marketing_materials_file_link",
   "ticket_interest",
 ];
@@ -165,7 +165,7 @@ var HEADER_LABELS = [
   "Роль в компании",
   "Кол-во представителей на стенде",
   "Что хотите представить на стенде",
-  "Предпочтительный размер стенда",
+  "Пакет партнёрства",
   "Файл: маркетинговые материалы (ссылка)",
   "Интересующий билет",
 ];
